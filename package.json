@@ -1,0 +1,19 @@
+{
+  "name": "infrastructure-example-app",
+  "version": "1.0.0",
+  "description": "A bare nodejs api to demonstrate my personal CI/CD workflow using https://github.com/heanzyzabala/infrastructure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heanzyzabala/infrastructure-example-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heanzyzabala/infrastructure-example-app/issues"
+  },
+  "homepage": "https://github.com/heanzyzabala/infrastructure-example-app#readme"
+}
