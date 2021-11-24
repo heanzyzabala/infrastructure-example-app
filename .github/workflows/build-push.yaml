@@ -42,10 +42,16 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - uses: rishabhgupta/split-by@v1
+        id: split
+        with:
+          string: '${{ github.repository }}'
+          split-by: '/'
+
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: infrastructure-example-app
+          ECR_REPOSITORY: ${{ steps.split.outputs._1 }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
