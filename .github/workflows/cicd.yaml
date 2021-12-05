@@ -61,9 +61,10 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=docker_image::$(echo $ECR_REPOSITORY:$IMAGE_TAG)"
 
     outputs:
-      docker_image: ${{ steps.docker.env.ECR_REPOSITORY }}:${{ steps.docker.env.IMAGE_TAG }}
+      docker_image: ${{ steps.docker.outputs.docker_image }}
 
   deploy:
     needs: 'push'
@@ -81,6 +82,6 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       
       - name: Docker Image
-        run: echo "${{ needs.push.outputs.docker_image }}"
+        run: echo "$echo ${{ needs.push.outputs.docker_image }}"
 
     
