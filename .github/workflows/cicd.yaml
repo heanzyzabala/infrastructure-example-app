@@ -68,7 +68,7 @@ jobs:
   deploy:
     needs: 'push'
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/tags/v'
+    if: contains(github.ref, 'refs/tags/v')
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
